@@ -1,0 +1,82 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:vm="clr-namespace:CarRental.ViewModels"
+                    xmlns:vms="clr-namespace:CarRental.ViewModels.Single"
+                    xmlns:vmm="clr-namespace:CarRental.ViewModels.Many"
+                    xmlns:vw="clr-namespace:CarRental.Views"
+                    xmlns:vws="clr-namespace:CarRental.Views.Single"
+                    xmlns:vwm="clr-namespace:CarRental.Views.Many">        
+    <!--Styl do Tile-->
+    <Style x:Key="TileStyle" TargetType="Button">
+        <Setter Property="Margin" Value="2"/>
+        <Setter Property="HorizontalAlignment" Value="Center"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Height" Value="50"/>
+        <Setter Property="Width" Value="150"/>
+    </Style>
+    <!--Styl do Tile Ikon-->
+    <Style x:Key="IconStyle" TargetType="iconPacks:PackIconFontAwesome">
+        <Setter Property="Margin" Value="10,5,15,5"/>
+        <Setter Property="Width" Value="20" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="White" />
+    </Style>
+    <!--Styl do Tile TextBlock-->
+    <Style x:Key="BlockStyle" TargetType="TextBlock">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+        <Setter Property="Margin" Value="1"/>
+    </Style>
+    <!--Customer-->
+    <ControlTemplate x:Key="CustomerTile">
+        <Button Style="{StaticResource TileStyle}" Background="Green">
+            <StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconFontAwesome Style="{StaticResource IconStyle}" Kind="UserSolid"/>
+                <TextBlock Text="Customers" Style="{StaticResource BlockStyle}"></TextBlock>
+            </StackPanel>
+        </Button>
+    </ControlTemplate>
+    <!--Car-->
+    <ControlTemplate x:Key="CarTile">
+        <Button Style="{StaticResource TileStyle}" Background="Blue">
+            <StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconFontAwesome Style="{StaticResource IconStyle}" Kind="CarSolid"/>
+                <TextBlock Text="Cars" Style="{StaticResource BlockStyle}"></TextBlock>
+            </StackPanel>
+        </Button>
+    </ControlTemplate>
+    <!--Rentals-->
+    <ControlTemplate x:Key="RentalTile">
+        <Button Style="{StaticResource TileStyle}" Background="Orange">
+            <StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconFontAwesome Style="{StaticResource IconStyle}" Kind="CartShoppingSolid"/>
+                <TextBlock Text="Rentals" Style="{StaticResource BlockStyle}"></TextBlock>
+            </StackPanel>
+        </Button>
+    </ControlTemplate>
+    <!--Reservations-->
+    <ControlTemplate x:Key="ReservationTile">
+        <Button Style="{StaticResource TileStyle}" Background="Purple">
+            <StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconFontAwesome Style="{StaticResource IconStyle}" Kind="CalendarCheckSolid"/>
+                <TextBlock Text="Reservations" Style="{StaticResource BlockStyle}"></TextBlock>
+            </StackPanel>
+        </Button>
+    </ControlTemplate>
+    <!--Reservations-->
+    <ControlTemplate x:Key="PaymentTile">
+        <Button Style="{StaticResource TileStyle}" Background="DimGray">
+            <StackPanel Orientation="Horizontal">
+                <iconPacks:PackIconFontAwesome Style="{StaticResource IconStyle}" Kind="MoneyBillSolid"/>
+                <TextBlock Text="Payments" Style="{StaticResource BlockStyle}"></TextBlock>
+            </StackPanel>
+        </Button>
+    </ControlTemplate>
+
+</ResourceDictionary>
