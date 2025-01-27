@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CarRental.Views.Single" xmlns:Single="clr-namespace:CarRental.ViewModels.Single"
              mc:Ignorable="d"
-        Height="450" Width="800" 
+        d:DesignHeight="450" d:DesignWidth="800" 
         >
     <UserControl.Resources>
         <ResourceDictionary Source="SingleViewResources.xaml"/>
@@ -13,26 +13,25 @@
     <UserControl.DataContext>
         <Single:NewCustomerViewModel/>
     </UserControl.DataContext>
-    <Grid Margin="1">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <GroupBox Header="Customer info" BorderThickness="1" VerticalAlignment="Top">
+        <GroupBox Header="Customer info">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition/>
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <!--Name-->
                 <TextBlock Text="First Name: " Grid.Column="0" Grid.Row="0" Style="{StaticResource Title}"/>

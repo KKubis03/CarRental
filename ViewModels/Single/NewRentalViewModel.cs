@@ -105,7 +105,7 @@ namespace CarRental.ViewModels.Single
             get => Model.BaseAmount;
             set
             {
-                if (Model.BaseAmount != value && value > 0)
+                if (Model.BaseAmount != value && value >= 0)
                 {
                     Model.BaseAmount = value;
                     OnPropertyChanged(() => BaseAmount);
