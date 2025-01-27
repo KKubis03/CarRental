@@ -30,6 +30,7 @@ namespace CarRental.ViewModels
                 }
             }
         public ICommand OpenDashboardViewCommand { get; }
+        public ICommand OpenCustomerInfoViewCommand { get; }
         // Views Many
         public ICommand OpenCarsViewCommand { get; }
             public ICommand OpenCustomersViewCommand { get; }
@@ -51,6 +52,7 @@ namespace CarRental.ViewModels
             // widok domyslny
                 CurrentView = new Dashboard();
                 OpenDashboardViewCommand = new BaseCommand(OpenDashboardView);
+            OpenCustomerInfoViewCommand = new BaseCommand(OpenCustomerInfoView);
             // widoki Many
             OpenCarsViewCommand = new BaseCommand(OpenCarsView);
                 OpenCustomersViewCommand = new BaseCommand(OpenCustomersView);
@@ -69,6 +71,7 @@ namespace CarRental.ViewModels
                 OpenNewDiscountViewCommand = new BaseCommand(OpenNewDiscountView);
             }
         private void OpenDashboardView() => CurrentView = new Dashboard();
+        private void OpenCustomerInfoView() => CurrentView = new CustomerInfoView();
         // Many views
         private void OpenCarsView() => CurrentView = new CarsView();
             private void OpenCustomersView() => CurrentView = new CustomersView();

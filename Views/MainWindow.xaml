@@ -30,6 +30,7 @@
                 <MenuItem Header="New car" Command="{Binding OpenNewCarViewCommand}"/>
             </MenuItem>
             <MenuItem Header="Customers" FontWeight="SemiBold">
+                <MenuItem Header="Customer info" Command="{Binding OpenCustomerInfoViewCommand}"/>
                 <MenuItem Header="All customers" Command="{Binding OpenCustomersViewCommand}"/>
                 <MenuItem Header="New customer" Command="{Binding OpenAddCustomerViewCommand}"/>
             </MenuItem>
