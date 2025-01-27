@@ -40,6 +40,19 @@ namespace CarRental.ViewModels.Many
                 }
             }
         }
+        private ObservableCollection<ComboBoxDto> _Columns;
+        public ObservableCollection<ComboBoxDto> Columns
+        {
+            get => _Columns;
+            set
+            {
+                if (_Columns != value)
+                {
+                    _Columns = value;
+                    OnPropertyChanged(() => Columns);
+                }
+            }
+        }
         public decimal MinBasePrice
         {
             get => Service.MinBasePrice;

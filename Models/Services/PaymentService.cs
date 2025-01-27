@@ -18,6 +18,7 @@ namespace CarRental.Models.Services
         public decimal MaxFinalPrice { get; set; }
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
+        public string? ColumnName { get; set; }
         public override void AddModel(Payment model)
         {
             DatabaseContext.Payments.Add(model);
@@ -67,6 +68,10 @@ namespace CarRental.Models.Services
             if (DateTo != null)
             {
                 payments = payments.Where(item => item.PaymentDate <= DateTo);
+            }
+            if(ColumnName != null)
+            {
+                // not implemented
             }
             IQueryable<PaymentDto> paymentsDto = payments.Select(item => new PaymentDto()
             {

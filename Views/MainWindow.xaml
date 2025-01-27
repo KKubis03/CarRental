@@ -23,15 +23,17 @@
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
         <Menu Grid.Row="0" Background="{DynamicResource MahApps.Brushes.AccentBase}">
-            <MenuItem Header="Cars">
+            <MenuItem Header="{iconPacks:FontAwesome Kind=HouseSolid}" Command="{Binding OpenDashboardViewCommand}">
+            </MenuItem>
+            <MenuItem Header="Cars" FontWeight="SemiBold">
                 <MenuItem Header="All cars" Command="{Binding OpenCarsViewCommand}"/>
                 <MenuItem Header="New car" Command="{Binding OpenNewCarViewCommand}"/>
             </MenuItem>
-            <MenuItem Header="Customers">
+            <MenuItem Header="Customers" FontWeight="SemiBold">
                 <MenuItem Header="All customers" Command="{Binding OpenCustomersViewCommand}"/>
                 <MenuItem Header="New customer" Command="{Binding OpenAddCustomerViewCommand}"/>
             </MenuItem>
-            <MenuItem Header="Rentals">
+            <MenuItem Header="Rentals" FontWeight="SemiBold">
                 <MenuItem Header="All rentals" Command="{Binding OpenRentalsViewCommand}"/>
                 <MenuItem Header="New rental" Command="{Binding OpenNewRentalViewCommand}"/>
                 <MenuItem Header="Reviews">
@@ -39,11 +41,11 @@
                     <MenuItem Header="New review" Command="{Binding OpenNewReviewViewCommand}"/>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Reservations">
+            <MenuItem Header="Reservations" FontWeight="SemiBold">
                 <MenuItem Header="All reservations" Command="{Binding OpenReservationsViewCommand}"/>
                 <MenuItem Header="New reservation" Command="{Binding OpenNewReservationViewCommand}"/>
             </MenuItem>
-            <MenuItem Header="Payments">
+            <MenuItem Header="Payments" FontWeight="SemiBold">
                 <MenuItem Header="All payments" Command="{Binding OpenPaymentsViewCommand}"/>
                 <MenuItem Header="New Payment" Command="{Binding OpenNewPaymentViewCommand}"/>
                 <MenuItem Header="Discounts">

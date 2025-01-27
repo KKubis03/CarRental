@@ -35,6 +35,8 @@
                 <DatePicker SelectedDate="{Binding DateFrom}" Width="125"/>
                 <TextBlock Text="To" Style="{StaticResource Title}"/>
                 <DatePicker SelectedDate="{Binding DateTo}" Width="125"/>
+                <TextBlock Text="Sort by" Style="{StaticResource Title}"/>
+                <ComboBox ItemsSource="{Binding Columns}" SelectedValue="{Binding ColumnName}" DisplayMemberPath="Title" SelectedValuePath="Title" Style="{StaticResource Combo}"/>
                 <Button Content="Filter" Command="{Binding FilterCommand}"/>
                 <Button Content="Clear" Command="{Binding ClearFiltersCommand}"/>
             </WrapPanel>

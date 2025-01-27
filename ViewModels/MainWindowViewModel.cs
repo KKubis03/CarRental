@@ -13,6 +13,7 @@ using System.Windows.Input;
 using CarRental.ViewModels.Many;
 using CarRental.Views.Many;
 using CarRental.Views.Single;
+using CarRental.Views;
 
 namespace CarRental.ViewModels
 {
@@ -28,8 +29,9 @@ namespace CarRental.ViewModels
                     OnPropertyChanged(nameof(CurrentView));
                 }
             }
-            // Views Many
-            public ICommand OpenCarsViewCommand { get; }
+        public ICommand OpenDashboardViewCommand { get; }
+        // Views Many
+        public ICommand OpenCarsViewCommand { get; }
             public ICommand OpenCustomersViewCommand { get; }
             public ICommand OpenRentalsViewCommand { get; }
             public ICommand OpenReservationsViewCommand { get; }
@@ -47,9 +49,10 @@ namespace CarRental.ViewModels
         public MainWindowViewModel()
             {
             // widok domyslny
-                CurrentView = new CarsView();
-                // widoki Many
-                OpenCarsViewCommand = new BaseCommand(OpenCarsView);
+                CurrentView = new Dashboard();
+                OpenDashboardViewCommand = new BaseCommand(OpenDashboardView);
+            // widoki Many
+            OpenCarsViewCommand = new BaseCommand(OpenCarsView);
                 OpenCustomersViewCommand = new BaseCommand(OpenCustomersView);
                 OpenRentalsViewCommand = new BaseCommand(OpenRentalsView);
                 OpenReservationsViewCommand = new BaseCommand(OpenReservationsView);
@@ -65,8 +68,9 @@ namespace CarRental.ViewModels
                 OpenNewRentalViewCommand = new BaseCommand(OpenNewRentalView);
                 OpenNewDiscountViewCommand = new BaseCommand(OpenNewDiscountView);
             }
+        private void OpenDashboardView() => CurrentView = new Dashboard();
         // Many views
-            private void OpenCarsView() => CurrentView = new CarsView();
+        private void OpenCarsView() => CurrentView = new CarsView();
             private void OpenCustomersView() => CurrentView = new CustomersView();
             private void OpenRentalsView() => CurrentView = new RentalsView();
             private void OpenReservationsView() => CurrentView = new ReservationsView();

@@ -36,7 +36,7 @@
         </DataGrid>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
             <!--Refresh button-->
-            <Button Content="Refresh List" Width="120" Margin="10" Command="{Binding RefreshListCommand}"
+            <Button Content="Refresh List" Width="120" Margin="10" Command="{Binding RefreshCommand}"
     VerticalAlignment="Center" Background="Green" Foreground="White">
             </Button>
             <!--Delete button-->
