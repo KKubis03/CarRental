@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
@@ -58,6 +59,23 @@ namespace CarRental.Models.Services
             if(IsAvailable)
             {
                 cars = cars.Where(item => item.StatusId == 1);
+            }
+            if(!string.IsNullOrEmpty(ColumnName))
+            {
+                switch (ColumnName)
+                {
+                    case "Id": cars = !Descending ? cars.OrderBy(item => item.Id) : cars.OrderByDescending(item => item.Id); break;
+                    case "Category": cars = !Descending ? cars.OrderBy(item => item.Category.CategoryName) : cars.OrderByDescending(item => item.Category.CategoryName); break;
+                    case "Brand": cars = !Descending ? cars.OrderBy(item => item.Brand.CarBrandName) : cars.OrderByDescending(item => item.Brand.CarBrandName); break;
+                    case "Model": cars = !Descending ? cars.OrderBy(item => item.Model.CarModelName) : cars.OrderByDescending(item => item.Model.CarModelName); break;
+                    case "Status": cars = !Descending ? cars.OrderBy(item => item.Status.StatusName) : cars.OrderByDescending(item => item.Status.StatusName); break;
+                    case "Year": cars = !Descending ? cars.OrderBy(item => item.ProductionYear) : cars.OrderByDescending(item => item.ProductionYear); break;
+                    case "Vin": cars = !Descending ? cars.OrderBy(item => item.Vin) : cars.OrderByDescending(item => item.Vin); break;
+                    case "LicensePlate": cars = !Descending ? cars.OrderBy(item => item.LicensePlate) : cars.OrderByDescending(item => item.LicensePlate); break;
+                    case "Gearbox": cars = !Descending ? cars.OrderBy(item => item.GearboxType.GearboxName) : cars.OrderByDescending(item => item.GearboxType.GearboxName); break;
+                    case "Fuel": cars = !Descending ? cars.OrderBy(item => item.FuelType.FuelName) : cars.OrderByDescending(item => item.FuelType.FuelName); break;
+                    case "Color": cars = !Descending ? cars.OrderBy(item => item.Color.ColorName) : cars.OrderByDescending(item => item.Color.ColorName); break;
+                }
             }
 
             IQueryable<CarDto> carsDto = cars.Select(item => new CarDto()

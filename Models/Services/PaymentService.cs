@@ -69,9 +69,19 @@ namespace CarRental.Models.Services
             {
                 payments = payments.Where(item => item.PaymentDate <= DateTo);
             }
-            if(ColumnName != null)
+            if (!string.IsNullOrEmpty(ColumnName))
             {
-                // not implemented
+                switch (ColumnName)
+                {
+                    case "Id": payments = !Descending ? payments.OrderBy(item => item.Id) : payments.OrderByDescending(item => item.Id); break;
+                    case "Status": payments = !Descending ? payments.OrderBy(item => item.Status.StatusName) : payments.OrderByDescending(item => item.Status.StatusName); break;
+                    case "Base price": payments = !Descending ? payments.OrderBy(item => item.Rental.BaseAmount) : payments.OrderByDescending(item => item.Rental.BaseAmount); break;
+                    case "Final price": payments = !Descending ? payments.OrderBy(item => item.FinalAmount) : payments.OrderByDescending(item => item.FinalAmount); break;
+                    case "Discount": payments = !Descending ? payments.OrderBy(item => item.Discount.DiscountName) : payments.OrderByDescending(item => item.Discount.DiscountName); break;
+                    case "Rental": payments = !Descending ? payments.OrderBy(item => item.Rental.Id) : payments.OrderByDescending(item => item.Rental.Id); break;
+                    case "Date": payments = !Descending ? payments.OrderBy(item => item.PaymentDate) : payments.OrderByDescending(item => item.PaymentDate); break;
+
+                }
             }
             IQueryable<PaymentDto> paymentsDto = payments.Select(item => new PaymentDto()
             {

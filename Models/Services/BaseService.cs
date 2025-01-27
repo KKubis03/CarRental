@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,6 +18,9 @@ namespace CarRental.Models.Services
         where ModelType : new()
     {
         public DatabaseContext DatabaseContext {  get; set; }
+        public string? ColumnName { get; set; }
+        public bool Descending { get; set; }
+        public ObservableCollection<string>? ColumnNames;
         public string? SearchInput { get; set; }
         public BaseService()
         {

@@ -25,6 +25,10 @@
                 <TextBox Text="{Binding Content}" Style="{StaticResource Box}"/>
                 <TextBlock Text="Rating" Style="{StaticResource Title}"/>
                 <TextBox Text="{Binding Rating}" Style="{StaticResource Box}"/>
+                <TextBlock Text="Sort by" Style="{StaticResource Title}"/>
+                <ComboBox ItemsSource="{Binding ColumnNames}" SelectedItem="{Binding ColumnName}" Style="{StaticResource Combo}"/>
+                <TextBlock Text="Descending" Style="{StaticResource Title}"/>
+                <CheckBox IsChecked="{Binding Descending}" Width="20"/>
                 <Button Content="Filter" Command="{Binding FilterCommand}"/>
                 <Button Content="Clear" Command="{Binding ClearFiltersCommand}"/>
             </WrapPanel>

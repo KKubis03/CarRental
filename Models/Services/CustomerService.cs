@@ -42,6 +42,17 @@ namespace CarRental.Models.Services
             {
                 customers = customers.Where(item => item.LastName.Contains(Surname));
             }
+            if (!string.IsNullOrEmpty(ColumnName))
+            {
+                switch (ColumnName)
+                {
+                    case "Id": customers = !Descending ? customers.OrderBy(item => item.Id) : customers.OrderByDescending(item => item.Id); break;
+                    case "Name": customers = !Descending ? customers.OrderBy(item => item.FirstName) : customers.OrderByDescending(item => item.FirstName); break;
+                    case "Surname": customers = !Descending ? customers.OrderBy(item => item.LastName) : customers.OrderByDescending(item => item.LastName); break;
+                    case "Phone": customers = !Descending ? customers.OrderBy(item => item.PhoneNumber) : customers.OrderByDescending(item => item.PhoneNumber); break;
+                    case "Email": customers = !Descending ? customers.OrderBy(item => item.Email) : customers.OrderByDescending(item => item.Email); break;
+                }
+            }
             IQueryable<CustomerDto> customersDto = customers.Select(item => new CustomerDto()
             {
                 Id = item.Id,

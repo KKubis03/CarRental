@@ -43,6 +43,16 @@ namespace CarRental.Models.Services
             {
                 reviews = reviews.Where(item => item.Rating == Rating);
             }
+            if (!string.IsNullOrEmpty(ColumnName))
+            {
+                switch (ColumnName)
+                {
+                    case "Id": reviews = !Descending ? reviews.OrderBy(item => item.Id) : reviews.OrderByDescending(item => item.Id); break;
+                    case "Content": reviews = !Descending ? reviews.OrderBy(item => item.Content) : reviews.OrderByDescending(item => item.Content); break;
+                    case "Rating": reviews = !Descending ? reviews.OrderBy(item => item.Rating) : reviews.OrderByDescending(item => item.Rating); break;
+                    case "RentalId": reviews = !Descending ? reviews.OrderBy(item => item.RentalId) : reviews.OrderByDescending(item => item.RentalId); break;
+                }
+            }
             IQueryable<ReviewDto> reviewsDto = reviews.Select(item => new ReviewDto()
             {
                 Id = item.Id,

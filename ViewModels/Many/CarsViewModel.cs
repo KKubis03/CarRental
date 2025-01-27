@@ -34,6 +34,9 @@ namespace CarRental.ViewModels.Many
                 Title = item.CarBrandName
             }).ToList();
             _CarBrands = new ObservableCollection<ComboBoxDto>(brands);
+            // Column Names
+            List<string> columnNames = new List<string> {"Id","Category", "Brand", "Model","Status","Year", "Vin", "LicensePlate","Gearbox", "Fuel", "Color"};
+            ColumnNames = new ObservableCollection<string>(columnNames);
         }
         private ObservableCollection<ComboBoxDto> _CarCategories;
         public ObservableCollection<ComboBoxDto> CarCategories
@@ -48,6 +51,18 @@ namespace CarRental.ViewModels.Many
                 }
             }
         }
+        public ObservableCollection<string> ColumnNames
+        {
+            get => Service.ColumnNames;
+            set
+            {
+                if (Service.ColumnNames != value)
+                {
+                    Service.ColumnNames = value;
+                    OnPropertyChanged(() => ColumnNames);
+                }
+            }
+        }
         private ObservableCollection<ComboBoxDto> _CarBrands;
         public ObservableCollection<ComboBoxDto> CarBrands
         {
@@ -58,6 +73,18 @@ namespace CarRental.ViewModels.Many
                 {
                     _CarBrands = value;
                     OnPropertyChanged(() => CarBrands);
+                }
+            }
+        }
+        public string? ColumnName
+        {
+            get => Service.ColumnName;
+            set
+            {
+                if (Service.ColumnName != value)
+                {
+                    Service.ColumnName = value;
+                    OnPropertyChanged(() => ColumnName);
                 }
             }
         }
@@ -97,11 +124,25 @@ namespace CarRental.ViewModels.Many
                 }
             }
         }
+        public bool Descending
+        {
+            get => Service.Descending;
+            set
+            {
+                if (Service.Descending != value)
+                {
+                    Service.Descending = value;
+                    OnPropertyChanged(() => Descending);
+                }
+            }
+        }
         protected override void ClearFilters()
         {
             CategoryId = 0;
             BrandId = 0;
             IsAvailable = false;
+            Descending = false;
+            ColumnName = "Id";
             Refresh();
         }
     }

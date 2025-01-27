@@ -17,6 +17,44 @@ namespace CarRental.ViewModels.Many
     {
         public CustomersViewModel() : base("Customers")
         {
+            List<string> columnNames = new List<string> {"Id","Name", "Surname","Phone", "Email"};
+            ColumnNames = new ObservableCollection<string>(columnNames);
+        }
+        public ObservableCollection<string> ColumnNames
+        {
+            get => Service.ColumnNames;
+            set
+            {
+                if (Service.ColumnNames != value)
+                {
+                    Service.ColumnNames = value;
+                    OnPropertyChanged(() => ColumnNames);
+                }
+            }
+        }
+        public string? ColumnName
+        {
+            get => Service.ColumnName;
+            set
+            {
+                if (Service.ColumnName != value)
+                {
+                    Service.ColumnName = value;
+                    OnPropertyChanged(() => ColumnName);
+                }
+            }
+        }
+        public bool Descending
+        {
+            get => Service.Descending;
+            set
+            {
+                if (Service.Descending != value)
+                {
+                    Service.Descending = value;
+                    OnPropertyChanged(() => Descending);
+                }
+            }
         }
         public string Name
         {
@@ -46,6 +84,8 @@ namespace CarRental.ViewModels.Many
         {
             Name = string.Empty;
             Surname = string.Empty;
+            ColumnName = "Id";
+            Descending = false;
             Refresh();
         }
     }

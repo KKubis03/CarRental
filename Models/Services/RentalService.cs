@@ -42,6 +42,17 @@ namespace CarRental.Models.Services
             {
                 rentals = rentals.Where(item => item.BaseAmount <= MaxPrice);
             }
+            if (!string.IsNullOrEmpty(ColumnName))
+            {
+                switch (ColumnName)
+                {
+                    case "Id": rentals = !Descending ? rentals.OrderBy(item => item.Id) : rentals.OrderByDescending(item => item.Id); break;
+                    case "Car": rentals = !Descending ? rentals.OrderBy(item => item.Car.Brand.CarBrandName) : rentals.OrderByDescending(item => item.Car.Brand.CarBrandName); break;
+                    case "Customer": rentals = !Descending ? rentals.OrderBy(item => item.Customer.FirstName) : rentals.OrderByDescending(item => item.Customer.FirstName); break;
+                    case "Price": rentals = !Descending ? rentals.OrderBy(item => item.BaseAmount) : rentals.OrderByDescending(item => item.BaseAmount); break;
+
+                }
+            }
             IQueryable<RentalDto> rentalsDto = rentals.Select(item => new RentalDto()
             {
                 Id = item.Id,

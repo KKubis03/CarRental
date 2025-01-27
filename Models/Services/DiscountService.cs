@@ -41,6 +41,15 @@ namespace CarRental.Models.Services
             {
                 discounts = discounts.Where(item => item.DiscountPercentage == Percentage);
             }
+            if (!string.IsNullOrEmpty(ColumnName))
+            {
+                switch (ColumnName)
+                {
+                    case "Id": discounts = !Descending ? discounts.OrderBy(item => item.Id) : discounts.OrderByDescending(item => item.Id); break;
+                    case "Name": discounts = !Descending ? discounts.OrderBy(item => item.DiscountName) : discounts.OrderByDescending(item => item.DiscountName); break;
+                    case "Percentage": discounts = !Descending ? discounts.OrderBy(item => item.DiscountPercentage) : discounts.OrderByDescending(item => item.DiscountPercentage); break;
+                }
+            }
             IQueryable<DiscountDto> discountDtos = discounts.Select(item => new DiscountDto()
             {
                 Id = item.Id,

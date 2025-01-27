@@ -26,6 +26,8 @@ namespace CarRental.ViewModels.Many
                 Title = item.StatusName
             }).ToList();
             _Statuses = new ObservableCollection<ComboBoxDto>(statuses);
+            List<string> columnNames = new List<string> { "Id", "Base price","Final price", "Discount", "Rental", "Date" };
+            ColumnNames = new ObservableCollection<string>(columnNames);
         }
         private ObservableCollection<ComboBoxDto> _Statuses;
         public ObservableCollection<ComboBoxDto> Statuses
@@ -40,16 +42,39 @@ namespace CarRental.ViewModels.Many
                 }
             }
         }
-        private ObservableCollection<ComboBoxDto> _Columns;
-        public ObservableCollection<ComboBoxDto> Columns
+        public ObservableCollection<string> ColumnNames
         {
-            get => _Columns;
+            get => Service.ColumnNames;
             set
             {
-                if (_Columns != value)
+                if (Service.ColumnNames != value)
                 {
-                    _Columns = value;
-                    OnPropertyChanged(() => Columns);
+                    Service.ColumnNames = value;
+                    OnPropertyChanged(() => ColumnNames);
+                }
+            }
+        }
+        public string? ColumnName
+        {
+            get => Service.ColumnName;
+            set
+            {
+                if (Service.ColumnName != value)
+                {
+                    Service.ColumnName = value;
+                    OnPropertyChanged(() => ColumnName);
+                }
+            }
+        }
+        public bool Descending
+        {
+            get => Service.Descending;
+            set
+            {
+                if (Service.Descending != value)
+                {
+                    Service.Descending = value;
+                    OnPropertyChanged(() => Descending);
                 }
             }
         }
@@ -147,6 +172,8 @@ namespace CarRental.ViewModels.Many
             StatusId = 0;
             DateFrom = null;
             DateTo = null;
+            ColumnName = "Id";
+            Descending = false;
             Refresh();
         }
     }

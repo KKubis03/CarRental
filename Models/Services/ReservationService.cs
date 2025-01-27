@@ -47,6 +47,16 @@ namespace CarRental.Models.Services
             {
                 reservations = reservations.Where(item => item.StatusId == StatusId);
             }
+            if (!string.IsNullOrEmpty(ColumnName))
+            {
+                switch (ColumnName)
+                {
+                    case "Id": reservations = !Descending ? reservations.OrderBy(item => item.Id) : reservations.OrderByDescending(item => item.Id); break;
+                    case "Car": reservations = !Descending ? reservations.OrderBy(item => item.Car.Brand.CarBrandName) : reservations.OrderByDescending(item => item.Car.Brand.CarBrandName); break;
+                    case "Customer": reservations = !Descending ? reservations.OrderBy(item => item.Customer.FirstName) : reservations.OrderByDescending(item => item.Customer.FirstName); break;
+                    case "Status": reservations = !Descending ? reservations.OrderBy(item => item.Status.StatusName) : reservations.OrderByDescending(item => item.Status.StatusName); break;
+                }
+            }
             IQueryable<ReservationDto> reservationDtos = reservations.Select(item => new ReservationDto
             {
                 Id = item.Id,
