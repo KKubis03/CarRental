@@ -115,7 +115,7 @@ namespace CarRental.Models.Services
         {
             if(model.BrandId != 0 && model.ModelId != 0 && model.CategoryId != 0 && int.Parse(model.ProductionYear) > 1900 
                 && int.Parse(model.ProductionYear) <= DateTime.Now.Year && !model.LicensePlate.IsNullOrEmpty() 
-                && !model.Vin.IsNullOrEmpty() && model.GearboxTypeId != 0 && model.FuelTypeId != 0 && model.ColorId != 0 && model.StatusId != 0)
+                && !model.Vin.IsNullOrEmpty() && model.Vin.Length <= 17 && model.GearboxTypeId != 0 && model.FuelTypeId != 0 && model.ColorId != 0 && model.StatusId != 0)
                 return true;
             else return false;
         }
