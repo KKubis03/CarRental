@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CarRental.Models.Dtos;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CarRental.Models.Services
 {
@@ -15,7 +16,8 @@ namespace CarRental.Models.Services
         public override void AddModel(Customer model)
         {
             DatabaseContext.Customers.Add(model);
-            DatabaseContext.SaveChanges();
+            if(IsValid(model))
+                DatabaseContext.SaveChanges();
         }
 
         public override void DeleteModel(CustomerDto model)
@@ -76,6 +78,14 @@ namespace CarRental.Models.Services
                 IsActive = true,
                 CreationDateTime = DateTime.Now,
             };
+        }
+
+        public override bool IsValid(Customer model)
+        {
+            if (!model.FirstName.IsNullOrEmpty() && !model.FirstName.Any(char.IsDigit) && !model.LastName.IsNullOrEmpty() && !model.LastName.Any(char.IsDigit) && !model.PhoneNumber.IsNullOrEmpty() 
+                && model.PhoneNumber.All(char.IsDigit) && !model.Email.IsNullOrEmpty())
+                return true;
+            else return false;
         }
     }
 }

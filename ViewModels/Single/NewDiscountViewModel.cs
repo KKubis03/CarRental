@@ -17,7 +17,7 @@ namespace CarRental.ViewModels.Single
             get => Model.DiscountPercentage;
             set
             {
-                if (Model.DiscountPercentage != value && value <= 100 && value > 0)
+                if (Model.DiscountPercentage != value && value <= 100 && value >= 0)
                 {
                     Model.DiscountPercentage = value;
                     OnPropertyChanged(() => DiscountPercentage);

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using CarRental.Models.Dtos;
 using CarRental.ViewModels;
 using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CarRental.Models.Services
 {
@@ -16,7 +17,8 @@ namespace CarRental.Models.Services
         public override void AddModel(Review model)
         {
             DatabaseContext.Reviews.Add(model);
-            DatabaseContext.SaveChanges();
+            if(IsValid(model))
+                DatabaseContext.SaveChanges();
         }
 
         public override void DeleteModel(ReviewDto model)
@@ -75,6 +77,13 @@ namespace CarRental.Models.Services
                 IsActive = true,
                 CreationDateTime = DateTime.Now,
             };
+        }
+
+        public override bool IsValid(Review model)
+        {
+            if (!model.Content.IsNullOrEmpty() && model.RentalId != 0 && model.Rating > 0 && model.Rating <= 5)
+                return true;
+            else return false;
         }
     }
 }

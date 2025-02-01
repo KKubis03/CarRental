@@ -109,5 +109,10 @@ namespace CarRental.Models.Services
                 CreationDateTime = DateTime.Now,
             };
         }
+
+        public override bool IsValid(Payment model)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

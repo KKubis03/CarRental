@@ -16,7 +16,8 @@ namespace CarRental.Models.Services
         public override void AddModel(Reservation model)
         {
             DatabaseContext.Reservations.Add(model);
-            DatabaseContext.SaveChanges();
+            if(IsValid(model))
+                DatabaseContext.SaveChanges();
         }
 
         public override void DeleteModel(ReservationDto model)
@@ -79,6 +80,13 @@ namespace CarRental.Models.Services
                 IsActive = true,
                 CreationDateTime = DateTime.Now,
             };
+        }
+
+        public override bool IsValid(Reservation model)
+        {
+            if (model.CustomerId != 0 && model.CarId != 0 && model.StatusId != 0)
+                return true;
+            else return false;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CarRental.Models.Dtos;
+using Microsoft.IdentityModel.Tokens;
 
 namespace CarRental.Models.Services
 {
@@ -14,7 +15,8 @@ namespace CarRental.Models.Services
         public override void AddModel(Discount model)
         {
             DatabaseContext.Discounts.Add(model);
-            DatabaseContext.SaveChanges();
+            if(IsValid(model))
+                DatabaseContext.SaveChanges();
         }
 
         public override void DeleteModel(DiscountDto model)
@@ -71,6 +73,13 @@ namespace CarRental.Models.Services
                 IsActive = true,
                 CreationDateTime = DateTime.Now,
             };
+        }
+
+        public override bool IsValid(Discount model)
+        {
+            if (!model.DiscountName.IsNullOrEmpty() && model.DiscountPercentage > 0 && model.DiscountPercentage <= 100)
+                return true;
+            else return false;
         }
     }
 }

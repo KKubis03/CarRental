@@ -14,7 +14,8 @@ namespace CarRental.Models.Services
         public override void AddModel(Rental model)
         {
             DatabaseContext.Add(model);
-            DatabaseContext.SaveChanges();
+            if(IsValid(model))
+                DatabaseContext.SaveChanges();
         }
 
         public override void DeleteModel(RentalDto model)
@@ -75,6 +76,13 @@ namespace CarRental.Models.Services
                 IsActive = true,
                 CreationDateTime = DateTime.Now,
             };
+        }
+
+        public override bool IsValid(Rental model)
+        {
+            if (model.CustomerId != 0 && model.CarId != 0 && model.BaseAmount >= 0)
+                return true;
+            else return false;
         }
     }
 }

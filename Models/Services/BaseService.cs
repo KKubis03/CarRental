@@ -35,5 +35,6 @@ namespace CarRental.Models.Services
         {
             return new ModelType();
         }
+        public abstract bool IsValid(ModelType model);
     }
 }
