@@ -14,7 +14,7 @@ public partial class CarModel
     [StringLength(30)]
     public string CarModelName { get; set; } = null!;
 
-    public int Brand { get; set; }
+    public int BrandId { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime CreationDateTime { get; set; }
@@ -27,9 +27,9 @@ public partial class CarModel
 
     public bool IsActive { get; set; }
 
-    [ForeignKey("Brand")]
+    [ForeignKey("BrandId")]
     [InverseProperty("CarModels")]
-    public virtual CarBrand BrandNavigation { get; set; } = null!;
+    public virtual CarBrand Brand { get; set; } = null!;
 
     [InverseProperty("Model")]
     public virtual ICollection<Car> Cars { get; set; } = new List<Car>();

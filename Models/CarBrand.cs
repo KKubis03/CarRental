@@ -25,7 +25,7 @@ public partial class CarBrand
 
     public bool IsActive { get; set; }
 
-    [InverseProperty("BrandNavigation")]
+    [InverseProperty("Brand")]
     public virtual ICollection<CarModel> CarModels { get; set; } = new List<CarModel>();
 
     [InverseProperty("Brand")]

@@ -22,8 +22,6 @@ public partial class DatabaseContext : DbContext
 
     public virtual DbSet<CarCategory> CarCategories { get; set; }
 
-    public virtual DbSet<CarFeature> CarFeatures { get; set; }
-
     public virtual DbSet<CarModel> CarModels { get; set; }
 
     public virtual DbSet<CarStatus> CarStatuses { get; set; }
@@ -33,8 +31,6 @@ public partial class DatabaseContext : DbContext
     public virtual DbSet<Customer> Customers { get; set; }
 
     public virtual DbSet<Discount> Discounts { get; set; }
-
-    public virtual DbSet<Feature> Features { get; set; }
 
     public virtual DbSet<FuelType> FuelTypes { get; set; }
 
@@ -60,164 +56,148 @@ public partial class DatabaseContext : DbContext
     {
         modelBuilder.Entity<Car>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Cars__3214EC071CAB043D");
+            entity.HasKey(e => e.Id).HasName("PK__Cars__3214EC0746E7080C");
 
             entity.HasOne(d => d.Brand).WithMany(p => p.Cars)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Cars__BrandId__534D60F1");
+                .HasConstraintName("FK__Cars__BrandId__49C3F6B7");
 
             entity.HasOne(d => d.Category).WithMany(p => p.Cars)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Cars__CategoryId__5535A963");
+                .HasConstraintName("FK__Cars__CategoryId__4BAC3F29");
 
             entity.HasOne(d => d.Color).WithMany(p => p.Cars)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Cars__ColorId__5812160E");
+                .HasConstraintName("FK__Cars__ColorId__4E88ABD4");
 
             entity.HasOne(d => d.FuelType).WithMany(p => p.Cars)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Cars__FuelTypeId__571DF1D5");
+                .HasConstraintName("FK__Cars__FuelTypeId__4D94879B");
 
             entity.HasOne(d => d.GearboxType).WithMany(p => p.Cars)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Cars__GearboxTyp__5629CD9C");
+                .HasConstraintName("FK__Cars__GearboxTyp__4CA06362");
 
             entity.HasOne(d => d.Model).WithMany(p => p.Cars)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Cars__ModelId__5441852A");
+                .HasConstraintName("FK__Cars__ModelId__4AB81AF0");
 
             entity.HasOne(d => d.Status).WithMany(p => p.Cars)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Cars__StatusId__59063A47");
+                .HasConstraintName("FK__Cars__StatusId__4F7CD00D");
         });
 
         modelBuilder.Entity<CarBrand>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CarBrand__3214EC076F0FAA79");
+            entity.HasKey(e => e.Id).HasName("PK__CarBrand__3214EC078E62C46F");
         });
 
         modelBuilder.Entity<CarCategory>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CarCateg__3214EC0781E011C5");
-        });
-
-        modelBuilder.Entity<CarFeature>(entity =>
-        {
-            entity.HasOne(d => d.Car).WithMany()
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__CarFeatur__CarId__70DDC3D8");
-
-            entity.HasOne(d => d.Feature).WithMany()
-                .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__CarFeatur__Featu__71D1E811");
+            entity.HasKey(e => e.Id).HasName("PK__CarCateg__3214EC0716B16791");
         });
 
         modelBuilder.Entity<CarModel>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CarModel__3214EC076BC1FBA1");
+            entity.HasKey(e => e.Id).HasName("PK__CarModel__3214EC0791C6A689");
 
-            entity.HasOne(d => d.BrandNavigation).WithMany(p => p.CarModels)
+            entity.HasOne(d => d.Brand).WithMany(p => p.CarModels)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__CarModels__Brand__4CA06362");
+                .HasConstraintName("FK__CarModels__Brand__4316F928");
         });
 
         modelBuilder.Entity<CarStatus>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__CarStatu__3214EC0788623260");
+            entity.HasKey(e => e.Id).HasName("PK__CarStatu__3214EC07C7422242");
         });
 
         modelBuilder.Entity<Color>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Colors__3214EC0735FC29D0");
+            entity.HasKey(e => e.Id).HasName("PK__Colors__3214EC07D17AE0AA");
         });
 
         modelBuilder.Entity<Customer>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07A76F210C");
+            entity.HasKey(e => e.Id).HasName("PK__Customer__3214EC07E6E675D6");
         });
 
         modelBuilder.Entity<Discount>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Discount__3214EC07FE7EDF24");
-        });
-
-        modelBuilder.Entity<Feature>(entity =>
-        {
-            entity.HasKey(e => e.Id).HasName("PK__Features__3214EC07326415DC");
+            entity.HasKey(e => e.Id).HasName("PK__Discount__3214EC0770588639");
         });
 
         modelBuilder.Entity<FuelType>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__FuelType__3214EC079E1C94C3");
+            entity.HasKey(e => e.Id).HasName("PK__FuelType__3214EC07F40DBAA7");
         });
 
         modelBuilder.Entity<GearboxType>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__GearboxT__3214EC07C3B6BC3B");
+            entity.HasKey(e => e.Id).HasName("PK__GearboxT__3214EC079D154C23");
         });
 
         modelBuilder.Entity<Payment>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Payments__3214EC072AA7B51F");
+            entity.HasKey(e => e.Id).HasName("PK__Payments__3214EC07843A91CA");
 
-            entity.HasOne(d => d.Discount).WithMany(p => p.Payments).HasConstraintName("FK__Payments__Discou__6E01572D");
+            entity.HasOne(d => d.Discount).WithMany(p => p.Payments).HasConstraintName("FK__Payments__Discou__6477ECF3");
 
             entity.HasOne(d => d.Rental).WithMany(p => p.Payments)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Payments__Rental__6D0D32F4");
+                .HasConstraintName("FK__Payments__Rental__6383C8BA");
 
             entity.HasOne(d => d.Status).WithMany(p => p.Payments)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Payments__Status__6EF57B66");
+                .HasConstraintName("FK__Payments__Status__656C112C");
         });
 
         modelBuilder.Entity<PaymentStatus>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__PaymentS__3214EC07151B8F55");
+            entity.HasKey(e => e.Id).HasName("PK__PaymentS__3214EC07877BC45E");
         });
 
         modelBuilder.Entity<Rental>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Rentals__3214EC072AC2368D");
+            entity.HasKey(e => e.Id).HasName("PK__Rentals__3214EC07C756DE24");
 
             entity.HasOne(d => d.Car).WithMany(p => p.Rentals)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Rentals__CarId__656C112C");
+                .HasConstraintName("FK__Rentals__CarId__5BE2A6F2");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Rentals)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Rentals__Custome__66603565");
+                .HasConstraintName("FK__Rentals__Custome__5CD6CB2B");
         });
 
         modelBuilder.Entity<Reservation>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Reservat__3214EC070DF8A97F");
+            entity.HasKey(e => e.Id).HasName("PK__Reservat__3214EC07F31577A9");
 
             entity.HasOne(d => d.Car).WithMany(p => p.Reservations)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reservati__CarId__5CD6CB2B");
+                .HasConstraintName("FK__Reservati__CarId__534D60F1");
 
             entity.HasOne(d => d.Customer).WithMany(p => p.Reservations)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reservati__Custo__5BE2A6F2");
+                .HasConstraintName("FK__Reservati__Custo__52593CB8");
 
             entity.HasOne(d => d.Status).WithMany(p => p.Reservations)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reservati__Statu__5DCAEF64");
+                .HasConstraintName("FK__Reservati__Statu__5441852A");
         });
 
         modelBuilder.Entity<ReservationStatus>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Reservat__3214EC07D92DE67A");
+            entity.HasKey(e => e.Id).HasName("PK__Reservat__3214EC0728431DD4");
         });
 
         modelBuilder.Entity<Review>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__Reviews__3214EC07BAD0A17C");
+            entity.HasKey(e => e.Id).HasName("PK__Reviews__3214EC076A3067AD");
 
             entity.HasOne(d => d.Rental).WithMany(p => p.Reviews)
                 .OnDelete(DeleteBehavior.ClientSetNull)
-                .HasConstraintName("FK__Reviews__RentalI__6A30C649");
+                .HasConstraintName("FK__Reviews__RentalI__60A75C0F");
         });
 
         OnModelCreatingPartial(modelBuilder);
