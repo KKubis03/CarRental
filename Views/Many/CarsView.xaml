@@ -45,7 +45,6 @@
                   SelectedItem="{Binding SelectedModel}"
                    Height="230">
         </DataGrid>
-            
         </ScrollViewer>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
             <!--Refresh button-->

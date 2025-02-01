@@ -34,12 +34,15 @@
                 <Button Content="Clear" Command="{Binding ClearFiltersCommand}"/>
             </WrapPanel>
         </GroupBox>
-        <DataGrid Grid.Row="1" x:Name="CarDataGrid"
-                  ItemsSource="{Binding Models}"
-                  HorizontalAlignment="Stretch" 
-                  SelectedItem="{Binding SelectedModel}"
-                  VerticalAlignment="Stretch">
-        </DataGrid>
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+            <DataGrid  x:Name="CarDataGrid"
+          ItemsSource="{Binding Models}"
+          HorizontalAlignment="Stretch" 
+          VerticalAlignment="Stretch"
+          SelectedItem="{Binding SelectedModel}"
+           Height="230">
+            </DataGrid>
+        </ScrollViewer>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
             <!--Refresh button-->
             <Button Content="Refresh List" Width="120" Margin="10" Command="{Binding RefreshCommand}"
